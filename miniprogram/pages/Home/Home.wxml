@@ -1,0 +1,109 @@
+<view class="page">
+  <view class="container" style="opacity:{{transparentrate}}">
+    <view class="section">
+      <form bindsubmit="bindFormSubmit">
+        <textarea class = "textareainform" placeholder="在此键入题目" name="textarea" style="background:#dcdcdc" auto-focus/>
+        <view class="container">
+        <!-- 添加描述图片 -->
+          <view class='img_body'>
+            <view class='img_list'>
+              <view id="{{index}}" class='img_li' wx:for="{{imglist}}" wx:key="{{index}}" bindlongtap="remove_img">
+                <image src="{{item}}"></image>
+              </view>
+              <view class='addimg' bindtap='addextraimg'>
+                <image src='./addpng.png'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="midcontain">
+          <view class="midbody">
+            <label class="labeloftype">题目类型</label> 
+            <button id="selectbutton" type="primary" bindtap="changetype"><text>{{quetype}}</text></button>
+          </view>
+          <view class="midbody">
+              <label class="labeloftype">所属章节</label> 
+              <button id="selectbutton" type="primary" bindtap="changetype2"><text>{{chapts[chapt]}}</text></button>
+          </view>
+          <!-- 实现条件渲染，根据selectbutton（home.js内的data.value选择不同的输入面板） -->
+          <view class = "midchanging">  
+            <view wx:if="{{value==0}}">
+              <view class="midbody">
+                <label class="labeloftype">多选题</label> 
+                <switch type="switch" bindchange="changetypeofselect" style="margin-left: 60%;position: relative;"></switch>
+              </view>
+              <view class="midbody">
+                <label class="labeloftype">选项数量</label> 
+                <slider bindchange="sliderchange" min="3" max="6" value="4" step="1" style="width:60%" show-value/>
+              </view>
+              <view class="midbody">
+                <label class="labeloftype">选项</label> 
+                <view class="midbody" wx:if="{{typeofselect==true}}">
+                  <view class="checkboxgroup" wx:for="{{['A','B','C','D','E','F']}}" wx:for-index="idx" wx:for-item = "character">
+                    <view wx:if="{{idx<slidervalue}}">
+                      <!-- <text class="content">{{character}}</text> -->
+                      <switch bindchange="checkoption" id="{{character}}" type="checkbox">{{character}}</switch>
+                    </view>
+                  </view>
+                </view>
+                <view class="midbody" wx:else>
+                  <radio-group class="midbody" bindchange="radiochange">
+                    <view class="checkboxgroup" wx:for="{{['A','B','C','D','E','F']}}" wx:for-index="idx" wx:for-item = "character">
+                      <view wx:if="{{idx<slidervalue}}">
+                        <!-- <text class="content">{{character}}</text> -->
+                        <radio value="{{character}}" type="checkbox">{{character}}</radio>
+                      </view>
+                    </view>
+                  </radio-group>
+                </view>
+              </view>
+            </view>
+            <view wx:elif="{{value==1}}">
+             <view class="midbody">
+                <label class="labeloftype">答案</label> 
+                <input type="text" placeholder="输入正确答案" bindinput="inputofans" class="textafterlabel"></input>
+              </view>
+            </view>
+            <view wx:elif="{{value==2}}">
+              <view class="midbody">
+                <label class="labeloftype">答案</label> 
+                <radio-group bindchange="judgechange" class="radiogroupafterlabel">
+                  <radio value="true" checked="checked"> <text>正确</text></radio>
+                  <radio value="false"> <text>错误</text></radio>
+                </radio-group>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="tagcontainer">
+          <view class="settag" wx:for="{{tags}}">
+            <label style="font-size: 19px;margin-left: -2%;">标签{{index+1}}</label>
+            <input type="text" style="width: 60%;margin-left: 5%" id="{{index}}" bindinput="updatetag" placeholder="输入标签" value="{{item}}"></input>
+            <icon type="success" id="{{index}}" bindtap="addnewtag" style="margin-right:3%"></icon>
+            <icon type="cancel" id="{{index}}" bindtap="deletecurtag"></icon>
+          </view>   
+        </view>
+        <button form-type="submit"> 提交 </button>
+      </form>
+    </view>
+
+  </view>
+</view>
+<view hidden="{{showpicker}}">
+  <picker-view id="checkedpicker" indicator-style="height: 50px;" style="width: 100%; height:300px;"  value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view wx:for="{{quetypes}}" style="line-height: 50px" >{{item}}</view>
+    </picker-view-column>
+    
+  </picker-view>
+  <button id="complete" bindtap="closepicker"><text>完成</text></button>
+</view>
+<view hidden="{{showpicker2}}">
+  <picker-view id="checkedpicker" indicator-style="height: 50px;" style="width: 100%; height:300px;"  value="{{chapt}}" bindchange="bindChange2">
+    <picker-view-column>
+      <view wx:for="{{chapts}}" style="line-height: 50px" >{{item}}</view>
+    </picker-view-column>
+    
+  </picker-view>
+  <button id="complete" bindtap="closepicker"><text>完成</text></button>
+</view>

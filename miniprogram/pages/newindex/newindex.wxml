@@ -1,0 +1,89 @@
+<!--pages/newindex/newindex.wxml-->
+<view class="searchblock" wx:if="{{curpage==0||curpage==3}}">
+  <input type="text" bindinput="changebeingsearch" placeholder ="输入id搜索题库" style="width: 80%;background: white;border-radius: 3%;height: 30px;margin-left: 2%;margin-top: 2%;margin-bottom: 1%;" value="{{bsearch}}"></input>
+  <text style="color:white;margin-left:3%;margin-top:3%" bindtap="search">搜索</text>
+</view>
+<view class="container" style="height:500px">
+  <view class="topcontainer" wx:if="{{curpage==0}}" style="width:100%;margin-top: 50px">
+   <view class="publictkcontainer">
+    <block wx:for="{{tks}}" wx:if="{{index<5}}">
+      <view class="publictk" id="{{index}}" bindtap="jumptotk">
+        <label style="font-weight:700;font-size:16px">{{item.ownner}}老师的公共题库</label>
+        <label style="font-weight:700;font-size:16px">整体正确率为{{ratelist[index]}}%</label>
+      </view>
+    </block>
+   </view>
+  </view>
+  <view class="formbox" wx:elif="{{curpage==3}}" style="margin-top:35%;text-align:center">
+    <view class="topcontainer">
+      <label style="margin:2%;font-size:16px;font-weight:700">{{tk.ownner}}老师的{{tk.needkey?'私有':'公有'}}题库</label>
+    </view>
+    <view class="midcontainer">
+      <label>题目数量\t </label>
+      <text>{{tk.tms.length}}</text>
+    </view>
+    <view class="midcontainer">
+      <label>答题人数\t </label>
+      <text>{{tk.answeramount}}</text>
+    </view>
+    <view class="midcontainer">
+      <label>总正确率 </label>
+      <text>{{correctrate}}%</text>
+    </view>
+    <view class="buttoncontainer">
+      <button style="width:25%;background:#52E152;margin-bottom:3%" bindtap="beginans">开始答题</button>
+    </view>
+  </view>
+  <view class="minecontainer" wx:elif="{{curpage==2}}" style="background:#f6f6f6;margin-top:20%">
+    <view class="userinfo" style="background:#f6f6f6;border:0">
+      <image class="userinfo-avatar" src="{{avatarUrl}}" style="width: 200rpx;height: 200rpx;"></image>
+    </view>
+  </view>
+  
+  <view style="margin:10%;border:2px solid#;heigth: 50px;width: 90%;text-align: center;background: #ffffff;padding: 5%;" wx:if="{{curpage==2}}">
+    <label style="float: left;font-weight: 700;font-size: 18px;">我的昵称</label>
+    <input type="text" value="{{userInfo.nickName}}" disabled="{{true}}"></input>
+  </view>
+  <view style="margin:2%;border:2px solid#;heigth: 50px;width: 90%;text-align: center;background: #ffffff;padding: 5%;" wx:if="{{curpage==2&&authority}}" bindtap="gotoupload">
+    <label style="float: left;font-weight: 700;font-size: 18px;" bindtap="gotoupload">上传题目</label>
+    <text bindtap="gotoupload">点击上传题目</text>
+  </view>
+  <view style="margin:2%;border:2px solid#;heigth: 50px;width: 90%;text-align: center;background: #ffffff;padding: 5%;" wx:if="{{curpage==2&&authority}}" bindtap="gototm">
+    <label style="float: left;font-weight: 700;font-size: 18px;" bindtap="gotoupload">我的题目</label>
+    <text bindtap="gotoupload">点击查看我的题目</text>
+  </view>
+
+  <!-- 通知页面 -->
+  <view wx:if="{{curpage==1}}" class="noticecontainer" style="width: 96%;margin: 2%;">
+    <view wx:for="{{notices}}" class="noticecontent" wx:for-index="idx" wx:for-item="itm" id="{{idx}}" bindtap="previewnotice">
+      <view class="rowrow">
+        <label style="font-size:18px;font-weigth:700;float:left">标题</label>
+        <text style="padding-left: 15%;">{{itm.title}}</text>
+      </view>
+      <view class="rowrow">
+        <label style="font-size:18px;font-weigth:700;float:left">发布者</label>
+        <text style="padding-left: 10%;">{{itm.ownner}}</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="bottomcontainer">
+    <view class="combind" style="background:{{curpage==0?'#DCDCDC':'white'}}" id="0" bindtap="changepage">
+     <image src="./home.png" id="0" style="width:40%;margin-left:30%" bindtap="changepage"></image>
+     <text>首页</text>
+    </view>
+    <view class="combind" style="background:{{curpage==1?'#DCDCDC':'white'}}" id="1" bindtap="changepage">
+     <image src="./notice.png" id="1" style="width:40%;margin-left:30%" bindtap="changepage" ></image>
+     <text>通知</text>
+    </view>
+    <view class="combind" style="background:{{curpage==2?'#DCDCDC':'white'}}" id="2" bindtap="changepage">
+     <image src="./mine.png" id="2" style="width:40%;margin-left:30%" bindtap="changepage"></image>
+     <text>我的</text>
+    </view>
+  </view>
+</view>
+<view class="noticewindow" hidden="{{hidewindow}}">
+  <textarea value="{{content}}" disabled="{{true}}" ></textarea>
+  <icon type="cancel" size="70" bindtap="closewindow" style="position: fixed;margin-top: 67%;margin-left: 31%;"></icon>
+</view>

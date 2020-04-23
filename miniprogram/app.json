@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/newindex/newindex",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room",
+    "pages/Home/Home",
+    "pages/tminfo/tminfo",
+    "pages/showtm/showtm",
+    "pages/tkinfo/tkinfo",
+    "pages/searchtk/searchtk",
+    "pages/answer/answer",
+    "pages/ansresult/ansresult"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "咕噜答题",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

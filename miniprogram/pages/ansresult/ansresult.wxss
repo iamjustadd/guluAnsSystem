@@ -1,0 +1,56 @@
+/* pages/ansresult/ansresult.wxss */
+.formbox{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid#a18ba1;
+  border-radius:10px;
+}
+.topcontainer{
+  width: 96%;
+  height: 49px;
+  margin-left: 2%;
+  border: 2px solid#57a9e8;
+  text-shadow: 2px 2px 2px #a18ba1
+}
+.midcontainer{
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  height: 400px;
+  margin-left: 2%;
+  border: 2px solid#57a9e8;
+}
+.imgcontainer{
+  width: 96%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.imgtodisplay{
+  height: 150px;
+  width: 96%;
+  margin: 2%;
+}
+.bottomcontainer{
+  display: flex;
+  flex-direction: row;
+  margin:10%;
+}
+button{
+  color:white;
+  background-color:rgb(230, 110, 54);
+  margin-left:10%;
+  margin-right:10%;
+}
+.circlebutton{
+  height:40px;
+  width:40px;
+  border-radius:50%;
+  margin-left:3%;
+  background:white;
+  color:black;
+  border:1px solid;
+  padding:2%;
+  margin-right: 0;
+}

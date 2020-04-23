@@ -1,0 +1,16 @@
+<!--pages/tkinfo/tkinfo.wxml-->
+<view class="container" style="background:gray;height:600px">
+  <view class="infoblcok" style="border: 3px solid#a18ba1;border-radius: 5px;background: turquoise;height: 300px;margin-top: 20%;width: 80%;">
+    <view class="top" style="word-break: break-all;height: 100px;text-align: center;padding-top: 20%;margin: 3%;">
+      <label style="font-weight:600">题库唯一标识 </label>
+      <text>{{tkid}}</text>
+    </view>
+    <view class="mid" wx:if="{{keycode}}" style="height: 80px;text-align: center;margin: 3%;">
+      <label style="font-weight:600">题库密码    </label>
+      <text style="margin-left:5px;text-align:center">{{keycode}}</text>
+    </view>
+    <view class="bottom">
+      <button style="color:white;background:pink" bindtap="copy">一键复制</button>
+    </view>
+  </view>
+</view>

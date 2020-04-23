@@ -1,0 +1,30 @@
+/* pages/tkinfo/tkinfo.wxss */
+.infoblock{
+  position: absolute;
+  display: flex;
+  word-break: break-all;
+  word-wrap:break-word;
+  flex-direction: column;
+  height: 300px;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: auto;
+  text-align: center;
+  border: 3px solid#a18ba1;
+  border-radius: 5px;
+  background-color: turquoise;
+}
+.top{
+  display: flex;
+  flex-direction: row;
+  background: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.mid{
+  display: flex;
+  flex-direction: row;
+  background: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

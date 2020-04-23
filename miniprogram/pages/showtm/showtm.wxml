@@ -1,0 +1,20 @@
+<!--pages/showtm/showtm.wxml-->
+<view class="container">
+  <view class="formbox">
+    <view class="topcontainer">
+      <label>题目标识 {{tm._id}}</label>
+    </view>
+    <view class="midcontainer">
+      <textarea wx:if="{{tm.description}}" value="{{tm.description}}" disabled="{{false}}" style="height:150px"></textarea>
+      <view class="imgcontainer">
+        <view wx:for="{{imglist}}" wx:for-item="item">
+          <image src="{{item}}" id ="{{index}}" class="imgtodisplay" bindtap="preview"></image>
+        </view>
+      </view>
+    </view>
+    <view class="bottomcontainer">
+      <button style="width:30%;background:#52E152">修改</button>
+      <button style="width:30%;background:#E66E36" bindtap="checkdelete">删除</button>
+    </view>
+  </view>
+</view>

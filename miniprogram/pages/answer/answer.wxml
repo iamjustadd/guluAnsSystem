@@ -1,0 +1,49 @@
+<!--pages/showtm/showtm.wxml-->
+<view class="container">
+  <view class="formbox">
+    <view class="topcontainer">
+      <label>当前为第{{curid+1}}题</label>
+      <text bindtap="submit" style="margin-left:60%;height:35px;border:1px solid">交卷</text>
+    </view>
+    <view class="midcontainer">
+      <textarea wx:if="{{tm.description}}" value="{{tm.description}}" disabled="{{true}}" style="height:150px"></textarea>
+      <view class="imgcontainer">
+        <view wx:for="{{imglist}}" wx:for-item="item">
+          <image src="{{item}}" id ="{{index}}" class="imgtodisplay" bindtap="preview"></image>
+        </view>
+      </view>
+    </view>
+    <view class="answer" style="margin: 5%;">
+      <!-- 从上到下一次是选择填空判断 -->
+      <view wx:if="{{quetype==0}}" class="selectans" style="display:flex;flex-directino:row;">
+        <label style="font-size: 20px;margin: 2%;font-weight: 700;">选项</label>
+        <!-- 微信小程序的setdata函数是同步的，但页面渲染是异步的，如果网速不是很快，会导致渲染结果无法预期 -->
+        <button wx:for="{{options}}" wx:for-index="idx" id="{{idx}}" wx:for-item="itm" bindtap="selection" class="circlebutton" style="width:40px;background:{{optionstat[idx]?'green':'white'}}" >
+          {{itm}}
+        </button>
+      </view>
+      <view wx:if="{{quetype==1}}" class="fillans" style="display:flex;flex-direction:row">
+        <label style="font-size: 20px;margin: 2%;font-weight: 700;">输入答案</label>
+        <input placeholder="输入正确答案" bindinput="inputchange" style="width:60%;margin:3%"></input>
+      </view>
+      <view wx:if="{{quetype==2}}" class="judgans" style="display:flex;flex-direction:row">
+        <label style="font-size: 20px;margin: 2%;font-weight: 700;">判断</label>
+        <button bindtap="selection" class="circlebutton" style="width:40px;background:{{ansjudge&&ansofjudge?'green':'white'}}" id="0" bindtap="judgechange">
+          √
+        </button>
+        <button bindtap="selection" class="circlebutton" style="width:40px;background:{{ansjudge&&!ansofjudge?'green':'white'}}" id="1" bindtap="judgechange">
+          ×
+        </button>
+      </view>
+    </view>
+    <view class="bottomcontainer" style="display:flex;flex-direction:column">
+      <view class="navigator" style="font-size: 20px;font-weight: 700;margin: 3%;">
+        <text bindtap="previoustm" style="margin-left:4%;height:35px;border:1px solid;text-align:center">上一题</text>
+        <text bindtap="nexttm" style="margin-left:50%;height:35px;border:1px solid">下一题</text>
+      </view>
+      <view class="buttongroup" style="display:flex;flex-directino:row;margin:3%">
+        <button wx:for="{{tmlist}}" bindtap="movetotm" id="{{index}}" style="color:black;background:{{curid==index?'green':'white'}};border:1px solid;height:30px;width:30px;padding:0;margin:1%;min-height:0">{{index+1}}</button>
+      </view>
+    </view>
+  </view>
+</view>

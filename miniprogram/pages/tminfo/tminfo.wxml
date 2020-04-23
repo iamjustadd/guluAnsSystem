@@ -1,0 +1,30 @@
+<!--pages/tminfo/tminfo.wxml-->
+<view class="container">
+  <view class="list-container" wx:for="{{['二','五','六','七','八','九']}}" wx:for-index="key" wx:for-item="val" style="height:{{nowheight[key]}}px">
+    <view class="labarea" id="chapt{{key}}"  bindtap="opensublist">
+      <label style="text-shadow: 2px 2px 2px #a18ba1">第{{val}}章</label>
+    </view>
+    <!-- 难点2：Mustache语法的复杂使用 -->
+    <!-- 规范问题:若想动态更新前端组件，必须使用this.setdata，否则改动无效 -->
+    <view class="sublist-container" hidden="{{showsublist[key]}}" style="height:{{needheight[key]-50}}px">
+      <block wx:for="{{cht}}" wx:for-item="item">
+          <view class="list-item"  wx:if="{{key==item.chapt}}" >
+            <view class="checkitem">
+              <view class="checkarea">
+                <checkbox id="{{index}}" style="margin-left:20%;margin-top:35%" bindtap="selectchange"></checkbox>
+              </view>
+              <view class="infoarea" id="tm{{index}}" bindtap="showinfo">
+                <label style="margin-left:3px;text-shadow: 2px 2px 2px #a18ba1;width:90%">{{item.type}}一道{{item.type=='选择题'?',答案是':''}}{{item.info.selectedoption}}</label>
+                <view class="biaoqian-container">
+                  <label class="biaoqian-item" wx:for="{{item.biaoqian}}" wx:for-item="biaoqian">
+                  {{biaoqian}}
+                  </label>
+                </view>
+              </view>
+            </view>
+          </view>
+      </block>
+    </view>
+  </view>
+</view>
+<button class="submitbutton" style="width: 100px;margin-left:65%;font-size:18px;padding-top:7%" bindtap="submittk">生成题库</button>

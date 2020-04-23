@@ -1,0 +1,29 @@
+<!--pages/searchtk/searchtk.wxml-->
+<view class="container">
+  <view class="searchblock">
+    <input type="text" bindinput="changebeingsearch" placeholder ="输入id搜索题库" style="width: 80%;background: white;border-radius: 3%;height: 30px;margin-left: 2%;margin-top: 2%;margin-bottom: 1%;" value="{{beingsearch}}"></input>
+    <text style="color:white;margin-left:3%;margin-top:3%" bindtap="search">搜索</text>
+  </view>
+</view>
+<view class="container">
+  <view class="formbox">
+    <view class="topcontainer">
+      <label>题库标识 {{tk._id}}</label>
+    </view>
+    <view class="midcontainer">
+      <label>题目数量 </label>
+      <text>{{tk.tms.length}}</text>
+    </view>
+    <view class="midcontainer">
+      <label>答题人数</label>
+      <text>{{tk.answeramount}}</text>
+    </view>
+    <view class="midcontainer">
+      <label>总正确率</label>
+      <text>{{tk.answeramount==0?tk.correct/tk.answeramount/tk.tms.length*100:0}}%</text>
+    </view>
+    <view class="buttoncontainer">
+      <button style="width:25%;background:#52E152;margin-bottom:3%" bindtap="beginans">开始答题</button>
+    </view>
+  </view>
+</view>
