@@ -49,8 +49,8 @@
     <text bindtap="gotoupload">点击上传题目</text>
   </view>
   <view style="margin:2%;border:2px solid#;heigth: 50px;width: 90%;text-align: center;background: #ffffff;padding: 5%;" wx:if="{{curpage==2&&authority}}" bindtap="gototm">
-    <label style="float: left;font-weight: 700;font-size: 18px;" bindtap="gotoupload">我的题目</label>
-    <text bindtap="gotoupload">点击查看我的题目</text>
+    <label style="float: left;font-weight: 700;font-size: 18px;" bindtap="gototm">我的题目</label>
+    <text bindtap="gototm">点击查看我的题目</text>
   </view>
 
   <!-- 通知页面 -->
