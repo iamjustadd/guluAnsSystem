@@ -12,6 +12,4 @@ step4. get start to it. have fun.
 
 author : Steven Liao , Nanjing University of posts and telecommunications
 
-if you have problem. send email to 1223961223@qq.com
-
 actually I dont really have time to update this project, vedio game is so funny :)
